@@ -197,7 +197,7 @@
 
 (add-to-list 'eglot-server-programs '((simpc-mode c++-mode c-mode) "clangd"))
 (add-to-list 'eglot-server-programs '((rust-mode) "rust-analyzer"))
-(add-to-list 'eglot-server-programs '((python-mode) "python-lsp-server"))
+(add-to-list 'eglot-server-programs '((python-mode) "pylsp"))
 
 ;;; Move Text
 (rc/require 'move-text)
