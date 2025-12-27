@@ -13,6 +13,8 @@
    ;; ((eq system-type 'gnu/linux) "Iosevka-20")))
    ((eq system-type 'gnu/linux) "JetBrainsMono Nerd Font-12")))
 
+(add-to-list 'default-frame-alist `(font . ,(rc/get-default-font)))
+
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
@@ -20,7 +22,6 @@
 (show-paren-mode 1)
 (global-display-line-numbers-mode 1)
 (electric-pair-mode 1)
-(whitespace-mode 1)
 
 (setq display-line-numbers-type 'relative)
 
@@ -157,7 +158,7 @@
 ;;; yasnippet
 (rc/require 'yasnippet)
 
-(setq yas/triggers-in-field nil)
+(setq yas-triggers-in-field nil)
 (setq yas-snippet-dirs '("~/.emacs.d/snippets/"))
 
 (yas-global-mode 1)
@@ -167,8 +168,7 @@
 (setq tramp-auto-save-directory "/tmp")
 
 ;;; powershell
-(use-package powershell
-	:ensure t)
+(rc/require 'powershell)
 (add-to-list 'auto-mode-alist '("\\.ps1\\'" . powershell-mode))
 (add-to-list 'auto-mode-alist '("\\.psm1\\'" . powershell-mode))
 
@@ -243,12 +243,12 @@
             (interactive)
             (setq-local fill-paragraph-function 'astyle-buffer)))
 
+(require 'compile)
+
 compilation-error-regexp-alist-alist
 
 (add-to-list 'compilation-error-regexp-alist
             '("\\([a-zA-Z0-9\\.]+\\)(\\([0-9]+\\)\\(,\\([0-9]+\\)\\)?) \\(Warning:\\)?"
               1 2 (4) (5)))
-
-(setq warning-minimum-level :error)
 
 (load-file custom-file)
