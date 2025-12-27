@@ -10,7 +10,6 @@
 (defun rc/get-default-font ()
   (cond
    ((eq system-type 'windows-nt) "Consolas-13")
-   ;; ((eq system-type 'gnu/linux) "Iosevka-20")))
    ((eq system-type 'gnu/linux) "JetBrainsMono Nerd Font-12")))
 
 (add-to-list 'default-frame-alist `(font . ,(rc/get-default-font)))
@@ -195,6 +194,10 @@
 (add-hook 'c++-mode-hook 'eglot-ensure)
 (add-hook 'rust-mode-hook 'eglot-ensure)
 (add-hook 'python-mode-hook 'eglot-ensure)
+
+(add-to-list 'eglot-server-programs '((simpc-mode c++-mode c-mode) "clangd"))
+(add-to-list 'eglot-server-programs '((rust-mode) "rust-analyzer"))
+(add-to-list 'eglot-server-programs '((python-mode) "python-lsp-server"))
 
 ;;; Move Text
 (rc/require 'move-text)
